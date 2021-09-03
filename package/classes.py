@@ -38,14 +38,19 @@ class Data:
     def na_columns(self):
         return list(self.df.loc[:,self.df.isna().sum() > 0].columns)
 
-class NaSolver(Data):
+class NaSolver(Data): #Only basic functions
     def __init__(self, df:object):
         self._df = df
+
     def remove_na_lines(self, na_proportion=None):
-        print(f'Lines removed:{self.na_lines}')
+        print(f'Lines removed:{self.na_lines[0:4]}...')
         self._df = self.df.drop(self.na_lines)
         return self._df
 
+    def remove_na_columns(self, na_proportion=None):
+        print(f'Columns removed')
+        self._df = self.df.drop(columns=self.na_columns)
+        return self._df
 
     
     
