@@ -37,7 +37,7 @@ class NaSolver(Helpers): #Only basic functions
 
     def remove_na_lines(self, max_na_proportion=None):
         if max_na_proportion:
-            drop_lines = list(self.df.loc[self.df.iloc[self.na_lines].isna().sum(axis=1) > len(self.df.columns)*max_na_proportion].index)
+            drop_lines =  list(self.df.loc[self.df.isna().sum(axis=1)>len(self.df.columns)*max_na_proportion].index) 
         else:
             drop_lines = self.na_lines
         print(f'Lines removed:{drop_lines[0:4]}...')
@@ -69,6 +69,7 @@ class NaSolver(Helpers): #Only basic functions
         for col in columns:
             self.df[col] = label_maker.fit_transform(self.df[col].astype('str'))
         return self.df
+
 
 
 
