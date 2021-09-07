@@ -69,6 +69,9 @@ class NaSolver(Helpers): #Only basic functions
         for col in columns:
             self.df[col] = label_maker.fit_transform(self.df[col].astype('str'))
         return self.df
+    
+    def fixing_skewness():
+        pass
 
 
 
