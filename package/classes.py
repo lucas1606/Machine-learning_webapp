@@ -31,7 +31,7 @@ class Helpers:
     def na_columns(self):
         return list(self.df.loc[:,self.df.isna().sum() > 0].columns)
 
-class NaSolver(Helpers): #Only basic functions
+class PreProcessor(Helpers): #Only basic functions
     def __init__(self, df:object):
         self.df = df
 
