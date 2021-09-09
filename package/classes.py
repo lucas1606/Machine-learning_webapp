@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
-
+from sklearn.preprocessing import StandardScaler
 
 
 class Helpers:
@@ -70,8 +70,36 @@ class NaSolver(Helpers): #Only basic functions
             self.df[col] = label_maker.fit_transform(self.df[col].astype('str'))
         return self.df
     
-    def fixing_skewness():
-        pass
+    def normalize(self, method:str=None):
+
+        if method == 'log' or method == None:
+            for column in self.df.columns:
+                if 0 in self.df[column].values:
+                    continue
+                else:
+                    self.df.loc[:,[column]] = np.log(self.df[column])
+
+        if method == 'sqrt':
+            for column in self.df.columns:
+                if 0 > self.df[column].min():
+                    pass
+                else:
+                    self.df[column] = np.sqrt(self.df[column])
+        return self.df
+
+    def feature_selection(self, objective_column:str=None, min_correlation:float=None):   
+        if objective_column == None:
+            objective_column = list(self.df.iloc[:,-1:])[0]
+        if min_correlation == None:
+            min_correlation = 0.4
+
+        corr_ranking =  self.df.corr()[objective_column].abs().sort_values(ascending = False)
+        self.df = self.df.loc[:,corr_ranking >= min_correlation]
+        
+        return self.df
+         
+        
+        
 
 
 
