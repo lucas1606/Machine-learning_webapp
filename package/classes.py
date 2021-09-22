@@ -1,9 +1,10 @@
+from __future__ import annotations
 import pandas as pd
 import numpy as np
 from pandas.core.frame import DataFrame
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
-from __future__ import annotations
+
 
 class Helpers:
 
