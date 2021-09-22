@@ -72,7 +72,7 @@ class PreProcessor(Helpers): #Method is initiated
             drop_lines =  list(self.df.loc[self.df.isna().sum(axis=1)>len(self.df.columns)*max_na_proportion].index) 
         else:
             drop_lines = self.na_lines
-        print(f'Lines removed:{drop_lines[0:4]}...')
+        #print(f'Lines removed:{drop_lines[0:4]}...')
         self.df = self.df.drop(drop_lines)
         return self.df
 
@@ -88,7 +88,7 @@ class PreProcessor(Helpers): #Method is initiated
 
         if max_na_proportion:
             drop_columns = list(self.df.loc[:,self.df.isnull().sum() > len(self.df.index)*max_na_proportion].columns)
-        print(f'Columns removed{drop_columns[0:4]}...')
+        #print(f'Columns removed{drop_columns[0:4]}...')
         self.df = self.df.drop(columns=drop_columns)
         return self.df
 
@@ -173,6 +173,7 @@ class PreProcessor(Helpers): #Method is initiated
         self.df = self.df.loc[:,corr_ranking >= min_correlation]
         
         return self.df
+    
          
         
         
